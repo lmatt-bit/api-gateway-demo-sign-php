@@ -53,15 +53,6 @@ class Demo
 		$request->setHeader(HttpHeader::HTTP_HEADER_ACCEPT, ContentType::CONTENT_TYPE_JSON);
 
 
-        // //注意：业务header部分，如果没有则无此行(如果有中文，请做Utf8ToIso88591处理)
-		// //mb_convert_encoding("headervalue2中文", "ISO-8859-1", "UTF-8");
-		// $request->setHeader("b-header2", "headervalue2");
-		// $request->setHeader("a-header1", "headervalue1");
-
-        // //注意：业务query部分，如果没有则无此行；请不要、不要、不要做UrlEncode处理
-		// $request->setQuery("b-query2", "queryvalue2");
-		// $request->setQuery("a-query1", "queryvalue1");
-
 		//注意：业务body部分，不能设置key值，只能有value
 		if (0 < strlen($bodyContent)) {
 			$request->setHeader(HttpHeader::HTTP_HEADER_CONTENT_MD5, base64_encode(md5($bodyContent, true)));
@@ -70,8 +61,6 @@ class Demo
 
 		//指定参与签名的header
 		$request->setSignHeader(SystemHeader::X_CA_TIMESTAMP);
-		// $request->setSignHeader("a-header1");
-		// $request->setSignHeader("b-header2");
 
 		$response = HttpClient::execute($request);
 		print_r($response);
