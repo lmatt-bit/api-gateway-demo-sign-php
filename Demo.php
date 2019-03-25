@@ -51,7 +51,8 @@ class Demo
 		
         //设定Accept，根据服务器端接受的值来设置
 		$request->setHeader(HttpHeader::HTTP_HEADER_ACCEPT, ContentType::CONTENT_TYPE_JSON);
-
+	//如果是调用测试环境请设置
+		//$request->setHeader(SystemHeader::X_CA_STAG, "TEST");
 
 		//注意：业务body部分，不能设置key值，只能有value
 		if (0 < strlen($bodyContent)) {
